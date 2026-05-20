@@ -1,0 +1,42 @@
+// UPDATE inside src/App.jsx
+
+// 1. Add import:
+import { fetchPricing } from "./pricingService";
+
+// 2. REMOVE:
+const providers = [...]
+
+// 3. ADD:
+const [providers, setProviders] = useState([]);
+
+// 4. Add useEffect:
+useEffect(() => {
+  async function loadPricing() {
+    try {
+      const hubspotProducts = await fetchPricing();
+
+      const mapped = hubspotProducts.map((product) => ({
+        name: product.name,
+        badge: "HubSpot Product",
+        base: product.price,
+        handset: 8,
+        sms: 5,
+        ai: 12,
+        webchat: 7,
+        voice: 5,
+        supportsAi: true,
+        supportsWebchat: true,
+        supportLevel: 4,
+        migrationEase: 8,
+        features: ["HubSpot synced pricing"],
+        fit: product.description || "HubSpot synced provider plan"
+      }));
+
+      setProviders(mapped);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  loadPricing();
+}, []);
