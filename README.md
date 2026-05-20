@@ -1,18 +1,17 @@
-# VOIP Comparison Website
+# VOIP Compare - Netlify Production
 
-## Setup
-
-```bash
+## Local install
 npm install
 npm run dev
-```
 
-## Deploy
+## Build
+npm run build
 
-Push to GitHub then import into Vercel.
+## Netlify
+- Build command: npm run build
+- Publish directory: dist
+- Functions directory: netlify/functions
 
-## Environment Variables
-
-Add in Vercel:
-
-HUBSPOT_PRIVATE_APP_TOKEN=your_token_here
+## HubSpot environment variable
+Add this in Netlify:
+HUBSPOT_PRIVATE_APP_TOKEN=your_private_app_token
